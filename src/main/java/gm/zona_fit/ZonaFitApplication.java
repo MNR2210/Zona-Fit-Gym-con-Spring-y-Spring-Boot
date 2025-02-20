@@ -87,7 +87,7 @@ public class ZonaFitApplication implements CommandLineRunner {
 				var apellido = consola.nextLine();
 				logger.info("Membresia: ");
 				var	membresia = Integer.parseInt(consola.nextLine());
-				var cliente = new Cliente();
+				Cliente cliente = new Cliente();
 				cliente.setNombre(nombre);
 				cliente.setApellido(apellido);
 				cliente.setMembresia(membresia);
