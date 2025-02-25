@@ -94,8 +94,47 @@ public class ZonaFitApplication implements CommandLineRunner {
 				clienteServicio.guardarCliente(cliente);
 				logger.info("Cliente agregado: " + cliente + nl);
 			}
+			case 4 -> {
+				logger.info("--- Modificar Cliente ---" + nl);
+				logger.info("Ingrese ID del cliente a modificar: ");
+				var idCliente = Integer.parseInt(consola.nextLine());
+				Cliente cliente = clienteServicio.buscarClientePorId(idCliente);
+				if (cliente != null){
+					logger.info("Nombre: ");
+					var nombre = consola.nextLine();
+					logger.info("Apellido: ");
+					var apellido = consola.nextLine();
+					logger.info("Membresia: ");
+					var membresia = Integer.parseInt(consola.nextLine());
+					cliente.setNombre(nombre);
+					cliente.setApellido(apellido);
+					cliente.setMembresia(membresia);
+					clienteServicio.guardarCliente(cliente);
+					logger.info("Cliente modificado: " + cliente + nl);
+				}
+				else
+					logger.info("Cliente no modificado: " + cliente + nl);
+
+			}
+			case 5 -> {
+				logger.info("--- Eliminar Cliente ---" + nl);
+				logger.info("Ingrese el ID del cliente a eliminar: ");
+				var idCliente = Integer.parseInt(consola.nextLine());
+				var cliente = clienteServicio.buscarClientePorId(idCliente);
+				if (cliente != null){
+					clienteServicio.eliminarCliente(cliente);
+					logger.info("Cliente eliminado: " + cliente + nl);
+				}
+				else
+					logger.info("Cliente no encontrado: " + cliente + nl);
+
+			}
+			case 6 -> {
+					logger.info("*** Cerrando aplicación ***" + nl + nl);
+					salir = true;
+			}
+			default -> logger.info("Opción no reconocida: " + opcion + nl);
 		}
 		return salir;
 	}
-
 }
